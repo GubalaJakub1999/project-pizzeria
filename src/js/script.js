@@ -52,7 +52,28 @@
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   };
 
+  class Product{
+    constructor(){
+      const thisProduct = this;
+
+      console.log('newProduct:', thisProduct);
+    }
+  }
+
   const app = {
+    initMenu: function(){
+      const thisApp = this;
+      console.log('thisApp.data', thisApp.data);
+      const testProduct = new Product();
+      console.log('testProduct:', testProduct);
+    },
+
+    initData: function(){
+      const thisApp = this;
+
+      thisApp.data = dataSource;
+    },
+
     init: function(){
       const thisApp = this;
       console.log('*** App starting ***');
@@ -60,8 +81,13 @@
       console.log('classNames:', classNames);
       console.log('settings:', settings);
       console.log('templates:', templates);
+
+      thisApp.initData();
+      thisApp.initMenu();
     },
   };
 
+
   app.init();
+
 }
