@@ -169,13 +169,13 @@
             // check if the option is not default
             if(!formData[paramId].default) {
               // add option price to price variable
-              price += formData[paramId].price
+              price += option.price
             }
           } else {
             // check if the option is default
             if(formData[paramId].default) {
               // reduce price variable
-              price -= formData[paramId].price
+              price -= option.price
             }
           }
         }
