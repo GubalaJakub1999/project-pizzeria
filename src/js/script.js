@@ -111,7 +111,7 @@
         /* if there is active product and it's not thisProduct.element, remove class active from it */
 
         if(activeProduct != thisProduct.element){
-          activeProduct.classList.remove('active');
+          activeProduct?.classList.remove('active');
         }
 
         /* toggle active class on thisProduct.element */
@@ -167,15 +167,15 @@
           if(formData[paramId] && formData[paramId].includes(optionId)){
             console.log(`Option includes optionId`);
             // check if the option is not default
-            if(formData) {
-
+            if(!formData[paramId].default) {
               // add option price to price variable
+              price += formData[paramId].price
             }
           } else {
             // check if the option is default
-            if(formData) {
+            if(formData[paramId].default) {
               // reduce price variable
-
+              price -= formData[paramId].price
             }
           }
         }
