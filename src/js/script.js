@@ -174,16 +174,14 @@
             }
           }
           const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
-          if(formData[paramId] && formData[paramId].includes(optionId)){
-              if(!formData[paramId].default){
-                optionImage.classList.add(classNames.menuProduct.imageVisible);
-              } else {
-                if(formData[paramId].default){
-                optionImage.classList.remove(classNames.menuProduct.imageVisible);
-                }
+          if(optionImage){
+            if(formData[paramId] && formData[paramId].includes(optionId)){
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+            } else {
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
               }
+            }
           }
-        }
       }
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
