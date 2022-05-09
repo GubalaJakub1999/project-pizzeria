@@ -257,7 +257,6 @@
       const thisProduct = this;
 
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('dsdsdsd',formData);
       const params = {};
 
       // for very category (param)
@@ -380,8 +379,8 @@
       thisCart.dom.productList.addEventListener('updated', function(){
         thisCart.update();
       });
-      thisCart.dom.productList.addEventListener('remove', function(){
-        thisCart.remove();
+      thisCart.dom.productList.addEventListener('remove', function(event){
+        thisCart.remove(event.detail.cartProduct);
       });
     }
     add(menuProduct){
@@ -427,17 +426,16 @@
         total.innerHTML = thisCart.totalPrice;
       }
     }
-    remove(){
-      const thisCartProduct = this;
+    remove(element){
+      const thisCart = this;
 
-      const event = new CustomEvent('remove', {
-        bubbles: true,
-        detail: {
-          cartProduct: thisCartProduct,
-        },
-      });
+      element.dom.wrapper.remove();
 
-      thisCartProduct.dom.wrapper.dispatchEvent(event);
+      const indexOfProduct  = thisCart.products.indexOf(element);
+
+      const removeProduct = thisCart.products.splice(indexOfProduct, 1);
+
+      thisCart.update();
     }
   }
   class CartProduct{
@@ -484,8 +482,19 @@
         event.preventDefault();
 
         thisCartProduct.remove(event.detail.cartProduct);
-        //console.log('test',thisCartProduct.remove());
       });
+    }
+    remove(){
+      const thisCartProduct = this;
+
+      const event = new CustomEvent('remove', {
+        bubbles: true,
+        detail: {
+          cartProduct: thisCartProduct,
+        },
+      });
+
+      thisCartProduct.dom.wrapper.dispatchEvent(event);
     }
   }
 
