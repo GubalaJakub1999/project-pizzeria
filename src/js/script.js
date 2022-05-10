@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
 
+//const { parse } = require("postcss");
+
 {
   'use strict';
 
@@ -76,6 +78,11 @@
     // CODE ADDED START
     cart: {
       defaultDeliveryFee: 20,
+    },
+    db:{
+      url: '//localhost:3131',
+      products: 'products',
+      orders: 'orders',
     },
     // CODE ADDED END
   };
@@ -422,7 +429,7 @@
       thisCart.dom.deliveryFee = thisCart.deliveryFee;
       thisCart.dom.totalNumber = thisCart.totalNumber;
       thisCart.dom.subtotalPrice = thisCart.subtotalPrice;
-      for(let total of thisCart.dom.totalPrice){
+      for(let total of Object.keys(thisCart.totalPrice)){
         total.innerHTML = thisCart.totalPrice;
       }
     }
@@ -503,21 +510,39 @@
       const thisApp = this;
 
       for (let productData in thisApp.data.products){
-        new Product(productData, thisApp.data.products[productData]);
+        new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
       }
     },
 
     initData: function(){
       const thisApp = this;
 
-      thisApp.data = dataSource;
+      const url = settings.db.url + '/' + settings.db.products;
+
+      fetch(url)
+        .then(function(rawResponse){
+          return rawResponse.json();
+        })
+        .then(function(parsedResponse){
+          console.log('parsedResponse', parsedResponse);
+
+          /* save parsedResponse as thisApp.data.products */
+
+          thisApp.data.products = parsedResponse;
+
+          /* execute initMenu method */
+
+          return thisApp.initMenu();
+        });
+
+      console.log('thisApp.data', JSON.stringify(thisApp.data));
+      thisApp.data = {};
     },
 
     init: function(){
       const thisApp = this;
 
       thisApp.initData();
-      thisApp.initMenu();
       thisApp.initCart();
     },
 
