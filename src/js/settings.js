@@ -8,7 +8,7 @@ export const select = {
     menu: '#product-list',
     cart: '#cart',
     pages: '#pages',
-    booking: '#booking-wrapper',
+    booking: '.booking-wrapper',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -31,7 +31,7 @@ export const select = {
     },
     datePicker: {
       wrapper: '.data-picker',
-      input: `input[name-data]`,
+      input: `input[name="data"]`,
     },
     hourPicker: {
       wrapper: '.hour-picker',
