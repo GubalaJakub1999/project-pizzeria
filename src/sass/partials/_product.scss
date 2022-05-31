@@ -3,7 +3,7 @@
 }
 
 .product {
-  margin: ($base-size, 2) 0;
+  margin: ($base-size / 2) 0;
   padding: ($base-size * 6) ($base-size * 4);
   background: $color-light;
   border-bottom: 1px solid lighten($color-dark, 70%);
@@ -12,16 +12,12 @@
   &__header {
     @include flex(row, center, space-between);
     margin-bottom: ($base-size * 2);
-    font-family: $font-header;
-    font-size: 22px;
     cursor: pointer;
   }
 
   &__name {
+    @extend .h1;
     position: relative;
-    margin: 0;
-    font-weight: $font-semibold;
-    text-transform: uppercase;
   }
 
   &__icon {
@@ -34,6 +30,7 @@
   }
 
   &__base-price {
+    @extend .h1;
     font-weight: $font-light;
   }
 
@@ -54,9 +51,7 @@
   }
 
   &__params-title {
-    font-size: 14px;
-    font-weight: $font-bold;
-    text-transform: uppercase;
+    @extend .h2;
     margin: ($base-size * 2) 0;
   }
 
@@ -95,7 +90,6 @@
       }
 
     }
-
   }
 
   &.active {
@@ -110,9 +104,7 @@
     .product__icon {
       transform: rotate(180deg);
     }
-
   }
-
 }
 
 .widget-amount {
@@ -120,8 +112,7 @@
     width: 30px;
     height: 30px;
     text-align: center;
-    margin: 0 ($base-size, 2);
+    margin: 0 ($base-size / 2);
     padding: 0;
   }
-
 }
