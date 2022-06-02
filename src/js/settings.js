@@ -30,8 +30,8 @@ export const select = {
       linkIncrease: 'a[href="#more"]',
     },
     datePicker: {
-      wrapper: '.data-picker',
-      input: `input[name="data"]`,
+      wrapper: '.date-picker',
+      input: `input[name="date"]`,
     },
     hourPicker: {
       wrapper: '.hour-picker',
