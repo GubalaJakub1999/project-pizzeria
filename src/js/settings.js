@@ -62,7 +62,13 @@ export const select = {
   booking: {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
-    tables: '.floor-plan .table',
+    tables: '.table',
+    floorPlan: '.floor-plan',
+    orderConfirmation: '.order-confirmation',
+    phone: '[name="phone"]',
+    address: '[name="address"]',
+    starters: '[name="starter"]',
+    submit: '[type="submit"]',
   },
   nav: {
     links: '.main-nav a',
@@ -107,7 +113,7 @@ export const settings = {
     orders: 'orders',
     product: 'product',
     order: 'order',
-    booking: 'booking',
+    bookings: 'bookings',
     event: 'event',
     dateStartParamKey: 'date_gte',
     dateEndParamKey: 'date_lte',
